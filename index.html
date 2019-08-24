@@ -8,7 +8,7 @@
   </div>
     <form method= id="messageForm" onsubmit="return false">
       <!-- <input id="initials" class="initials" maxlength="3" placeholder="Initials"> -->
-      <input id="message" class="message" placeholder="Message">
+      <input id="message" class="message" onkeypress="checkKey(event)" placeholder="Message">
       <button type="button" onclick="chatSent()">Send</button>
     </form>
 </main>
@@ -17,18 +17,16 @@
 <script>
   var userName = generateUserName();
 
-  // $('#messageForm').submit(function () {
-  //     chatSent();
-  //     return false;
-  //   });
+  function checkKey(e) {
+    if(e.keyCode == 13)
+      chatSent();
+  }
 
   function chatSent() {
     var text = document.getElementById('message').value
     var message = userName + ": " + text
-    console.log(message, data)
     updateMessage(userName, "0", message)
     document.getElementById('message').value = ''
-    // return false
   }
 
   function generateUserName() {
@@ -41,7 +39,7 @@
     );
   }
 
-  function updateMessage(name, id, message) {
+  function updateMessage(name, id, text) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/messages');
     xhr.send(JSON.stringify({
@@ -50,7 +48,8 @@
       "message" : message
     }));
     var textBox = document.getElementById('history');
-    var message = document.createTextNode(message);
+    var message = document.createElement("LI");
+    message.innerHTML = text;
     textBox.appendChild(message);
     textBox.scrollTop = textBox.scrollHeight
   }
