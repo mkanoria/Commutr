@@ -25,12 +25,8 @@
   function chatSent() {
     var text = document.getElementById('message').value
     var message = userName + ": " + text
-    var data = {
-      name: userName,
-      message: text
-    }
     console.log(message, data)
-    updateMessage(message)
+    updateMessage(userName, "0", message)
     document.getElementById('message').value = ''
     // return false
   }
