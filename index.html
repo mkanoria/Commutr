@@ -46,14 +46,13 @@
   }
 
   function updateMessage(name, id, message) {
-    var m = {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/messages');
+    xhr.send(JSON.stringify({
       "name"    : name,
       "id"      : id,
       "message" : message
-    }
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'commutr.com/messages');
-    xhr.send(JSON.stringify(m));
+    }));
     var textBox = document.getElementById('history');
     var message = document.createTextNode(message);
     textBox.appendChild(message);
@@ -62,7 +61,7 @@
 
   function getMessages() {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'commutr.com/messages');
+    xhr.open('GET', '/messages');
     xhr.send();
   }
 
