@@ -6,24 +6,24 @@
     <ul id="history">
     </ul>
   </div>
-    <form id="messageForm">
+    <form method= id="messageForm" onsubmit="return false">
       <!-- <input id="initials" class="initials" maxlength="3" placeholder="Initials"> -->
       <input id="message" class="message" placeholder="Message">
-      <button>Send</button>
+      <button type="button" onclick="chatSent()">Send</button>
     </form>
 </main>
 <!-- <script src="app.js"></script> -->
-<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.js"></script> -->
 <script>
+  var userName = generateUserName();
 
-  $('#messageForm').submit(function () {
-      chatSent();
-      return false;
-    });
+  // $('#messageForm').submit(function () {
+  //     chatSent();
+  //     return false;
+  //   });
 
   function chatSent() {
     var text = document.getElementById('message').value
-    var userName = generateUserName();
     var message = userName + ": " + text
     var data = {
       name: userName,
@@ -32,7 +32,7 @@
     console.log(message, data)
     updateMessage(message)
     document.getElementById('message').value = ''
-    return false
+    // return false
   }
 
   function generateUserName() {
@@ -46,9 +46,11 @@
   }
 
   function updateMessage(message) {
-    $('<li>').text(message).appendTo('#history');
+    // $('<li>').text(message).appendTo('#history');
     var textBox = document.getElementById('history');
-    textBox.scrollTop = textBox.scrollHeight
+    var message = document.createTextNode(message);
+    textBox.appendChild(message);
+    // textBox.scrollTop = textBox.scrollHeight
   }
 
 </script>
