@@ -30,7 +30,6 @@
         background-color: #000;
         margin: 20px auto;
         max-width: 350px;
-        /* padding: 20px; */
         border-radius: 8px;
         opacity: 0.8;
         color: #ffffff;
@@ -38,8 +37,6 @@
 
     ul {
         background-color: #000;
-        /* color: #008f11; */
-        /* color: #00bfff; */
         font-family: monaco, Consolas, "Lucida Console", monospace;
         font-size: 18px;
         font-style: normal;
@@ -47,46 +44,42 @@
         font-weight: 400;
         line-height: 30px;
         padding-left: 10px;
-        /* padding-top: 10px; */
         list-style: none;
         padding-right: 10px auto;
         overflow-x: hidden;
-        /* overflow-y: hidden; */
         height: 480px;
     }
 
     li {
-        padding-right: 20px auto;
-        padding-left: -60px auto;
+        padding-right: 20px;
+        padding-left: -60px;
+    }    
+
+    .container {
+        background-color: #434343;
+        justify-content: space-between;
+        display: flex;
     }
 
-    button {
+    .message {
+        width: 80%;
+        flex-grow: 1;
+    }
+
+    .submit-btn {
         border: none;
-        height: 75px;
+        width: 3em;
         background-color: #4CAF50;
         text-align: center;
         text-decoration: none;
         border-radius: 4px;
     }
 
-    .container {
-        background-color: #434343;
-        justify-content: space-between;
-        flex-direction: column;
-        height: 10px;
-        display: flex;
-    }
-
-    .container .btn-holder {
-        /* justify-content: flex-end; */
-        display: flex;
-    }
-
-    button:hover {
+    .submit-btn:hover {
         background-color: #3E8E41;
     }
 
-    button:active {
+    .submit-btn:active {
         background-color: #3E8E41;
         transform: translateY(4px);
     }
@@ -101,11 +94,6 @@
         font-weight: 400;
         line-height: 30px;
     }
-
-    /* .initials {
-        opacity: 1;
-        font-family: Arial;
-    } */
 
     .history {
         height: 300px;
@@ -220,10 +208,10 @@
         <ul id="history">
         </ul>
     </div>
-    <div class="container" id="messageForm">
-        <input id="message" class="message" onkeypress="checkKey(event)" placeholder="Type a message"
+    <div class="container">
+        <input class="message pad-10" id="message" onkeypress="checkKey(event)" placeholder="Type a message"
             autocomplete="off">
-        <button type="button" onclick="chatSent()">Send</button>
+        <button class="submit-btn pad-10" type="button" onclick="chatSent()">Send</button>
     </div>
 </main>
 
